@@ -65,9 +65,16 @@ const sendTokenResponse = (user, statusCode, res) => {
   }
 
   res
-    .status(statusCode)
-    .cookie("token", token, options)
-    .json({ success: true, token });
+    .status(statusCode) /*.cookie("token", token, options)*/
+    .json({
+      success: true,
+      // add for front end
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      // end for front end
+      token,
+    });
 };
 
 //@desc     Get current Logged in user
